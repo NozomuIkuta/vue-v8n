@@ -1,0 +1,32 @@
+{
+  "name": "vue-v8n",
+  "version": "0.0.0",
+  "description": "Validation composables for Vue application",
+  "keywords": [],
+  "author": "Nozomu Ikuta",
+  "license": "MIT",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/vue-v8n.js",
+  "module": "./dist/vue-v8n.js",
+  "types": "./dist/vue-v8n.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/vue-v8n.cjs",
+      "import": "./dist/vue-v8n.js",
+      "types": "./dist/vue-v8n.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\"",
+    "prepack": "pnpm run build",
+    "release": "pnpm run test && changelogen --release && pnpm publish && git push --follow-tags"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "changelogen": "^0.5.5",
+    "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.6.4"
+  }
+}
