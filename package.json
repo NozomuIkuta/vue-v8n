@@ -2,13 +2,29 @@
   "name": "vue-v8n",
   "version": "0.0.2",
   "description": "Validation composables for Vue application",
-  "keywords": [],
+  "keywords": [
+    "composables",
+    "form",
+    "validation",
+    "vue"
+  ],
+  "homepage": "https://github.com/NozomuIkuta/vue-v8n",
+  "bugs": {
+    "url": "https://github.com/NozomuIkuta/vue-v8n/issues"
+  },
   "author": "Nozomu Ikuta",
   "license": "MIT",
+  "packageManager": "pnpm@8.12.1",
+  "engines": {
+    "node": ">= 20.0.0"
+  },
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist"
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
   ],
   "main": "./dist/vue-v8n.js",
   "module": "./dist/vue-v8n.js",
@@ -25,6 +41,9 @@
     "test": "echo \"Error: no test specified\"",
     "prepack": "pnpm run build",
     "release": "pnpm run test && changelogen --release && pnpm publish && git push --follow-tags"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.13"
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
