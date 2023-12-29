@@ -21,10 +21,7 @@
   "type": "module",
   "sideEffects": false,
   "files": [
-    "dist",
-    "../../LICENSE",
-    "package.json",
-    "README.md"
+    "dist"
   ],
   "main": "./dist/vue-v8n.mjs",
   "module": "./dist/vue-v8n.mjs",
