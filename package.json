@@ -1,17 +1,6 @@
 {
-  "name": "vue-v8n",
-  "version": "0.0.4",
-  "description": "Validation composables for Vue application",
-  "keywords": [
-    "composables",
-    "form",
-    "validation",
-    "vue"
-  ],
-  "homepage": "https://github.com/NozomuIkuta/vue-v8n",
-  "bugs": {
-    "url": "https://github.com/NozomuIkuta/vue-v8n/issues"
-  },
+  "name": "vue-v8n-monorepo",
+  "private": true,
   "author": "Nozomu Ikuta",
   "license": "MIT",
   "packageManager": "pnpm@8.12.1",
@@ -20,35 +9,7 @@
   },
   "type": "module",
   "sideEffects": false,
-  "files": [
-    "dist",
-    "LICENSE",
-    "package.json",
-    "README.md"
-  ],
-  "main": "./dist/vue-v8n.mjs",
-  "module": "./dist/vue-v8n.mjs",
-  "types": "./dist/vue-v8n.d.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/vue-v8n.cjs",
-      "import": "./dist/vue-v8n.mjs",
-      "types": "./dist/vue-v8n.d.ts"
-    }
-  },
   "scripts": {
-    "build": "vite build",
-    "test": "echo \"Error: no test specified\"",
-    "prepack": "pnpm run build",
-    "release": "pnpm run test && changelogen --release && pnpm publish && git push --follow-tags"
-  },
-  "peerDependencies": {
-    "vue": "^3.3.13"
-  },
-  "devDependencies": {
-    "@types/node": "^20.10.5",
-    "changelogen": "^0.5.5",
-    "vite": "^5.0.10",
-    "vite-plugin-dts": "^3.6.4"
+    "build": "pnpm --filter './packages/**' prepack"
   }
 }
