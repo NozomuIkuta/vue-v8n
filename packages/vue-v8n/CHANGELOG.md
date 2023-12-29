@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.6
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.4...v0.0.6)
+
+### 🏡 Chore
+
+- Set up monorepo ([8e31244](https://github.com/NozomuIkuta/vue-v8n/commit/8e31244))
+- Move common deps to project root ([684c61d](https://github.com/NozomuIkuta/vue-v8n/commit/684c61d))
+- Change `files` of `package.json` ([a1a41db](https://github.com/NozomuIkuta/vue-v8n/commit/a1a41db))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.4
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.3...v0.0.4)
