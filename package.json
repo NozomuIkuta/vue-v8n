@@ -26,13 +26,13 @@
     "package.json",
     "README.md"
   ],
-  "main": "./dist/vue-v8n.js",
-  "module": "./dist/vue-v8n.js",
+  "main": "./dist/vue-v8n.mjs",
+  "module": "./dist/vue-v8n.mjs",
   "types": "./dist/vue-v8n.d.ts",
   "exports": {
     ".": {
       "require": "./dist/vue-v8n.cjs",
-      "import": "./dist/vue-v8n.js",
+      "import": "./dist/vue-v8n.mjs",
       "types": "./dist/vue-v8n.d.ts"
     }
   },

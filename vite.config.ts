@@ -9,8 +9,15 @@ export default defineConfig({
   build: {
     lib: {
       entry: resolve(projectRoot, 'src/index.ts'),
-      fileName: 'vue-v8n',
       formats: ['es', 'cjs'],
+      fileName (format) {
+        const ext = {
+          'es': 'mjs',
+          'cjs': 'cjs'
+        }[format]
+
+        return `vue-v8n${ext ? `.${ext}` : ''}`
+      },
     },
     rollupOptions: {
       external: ['vue'],
