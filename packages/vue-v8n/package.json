@@ -1,6 +1,6 @@
 {
   "name": "vue-v8n",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Validation composables for Vue application",
   "keywords": [
     "composables",
@@ -47,7 +47,6 @@
   },
   "devDependencies": {
     "@types/node": "^20.10.5",
-    "changelogen": "^0.5.5",
     "vite": "^5.0.10",
     "vite-plugin-dts": "^3.6.4"
   }

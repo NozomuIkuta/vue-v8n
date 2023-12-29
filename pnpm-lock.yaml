@@ -6,7 +6,11 @@ settings:
 
 importers:
 
-  .: {}
+  .:
+    devDependencies:
+      changelogen:
+        specifier: ^0.5.5
+        version: 0.5.5
 
   packages/vue-v8n:
     dependencies:
@@ -17,9 +21,6 @@ importers:
       '@types/node':
         specifier: ^20.10.5
         version: 20.10.5
-      changelogen:
-        specifier: ^0.5.5
-        version: 0.5.5
       vite:
         specifier: ^5.0.10
         version: 5.0.10(@types/node@20.10.5)

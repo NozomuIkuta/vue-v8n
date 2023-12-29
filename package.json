@@ -11,5 +11,8 @@
   "sideEffects": false,
   "scripts": {
     "build": "pnpm --filter './packages/**' prepack"
+  },
+  "devDependencies": {
+    "changelogen": "^0.5.5"
   }
 }
