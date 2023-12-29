@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.4
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.3...v0.0.4)
+
+### 🏡 Chore
+
+- Change dist file extensions ([e5bc8e7](https://github.com/NozomuIkuta/vue-v8n/commit/e5bc8e7))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.3
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.2...v0.0.3)
