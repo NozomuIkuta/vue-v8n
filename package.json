@@ -1,6 +1,7 @@
 {
   "name": "vue-v8n-monorepo",
   "private": true,
+  "version": "0.0.0",
   "author": "Nozomu Ikuta",
   "license": "MIT",
   "packageManager": "pnpm@8.12.1",
