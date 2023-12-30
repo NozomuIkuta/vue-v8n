@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v0.0.7
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.6...v0.0.7)
+
+### 🏡 Chore
+
+- Add playground ([cfea366](https://github.com/NozomuIkuta/vue-v8n/commit/cfea366))
+- Enhance playground and build process ([6c9e7da](https://github.com/NozomuIkuta/vue-v8n/commit/6c9e7da))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.6
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.4...v0.0.6)
