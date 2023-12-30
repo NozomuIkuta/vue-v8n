@@ -1,4 +1,5 @@
 import { dirname, resolve } from 'node:path'
+import { appendFile, readFile } from 'node:fs/promises'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
@@ -17,13 +18,21 @@ export default defineConfig({
         }[format]
 
         return `vue-v8n${ext ? `.${ext}` : ''}`
-      },
+      }
     },
     rollupOptions: {
-      external: ['vue'],
-    },
+      external: ['vue']
+    }
   },
   plugins: [
-    dts({ rollupTypes: true })
+    dts({
+      rollupTypes: true,
+      async afterBuild() {
+        const marker = '// --- COPY TO DIST --- //'
+        const content = await readFile(resolve(projectRoot, 'src/types.ts'), 'utf8')
+        const data = content.slice(content.indexOf(marker) + marker.length)
+        await appendFile(resolve(projectRoot, 'dist/vue-v8n.d.ts'), data)
+      }
+    })
   ]
 })

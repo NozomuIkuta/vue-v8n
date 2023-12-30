@@ -45,6 +45,7 @@
   "devDependencies": {
     "@types/node": "^20.10.5",
     "vite": "^5.0.10",
-    "vite-plugin-dts": "^3.6.4"
+    "vite-plugin-dts": "^3.6.4",
+    "vue": "^3.3.13"
   }
 }

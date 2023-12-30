@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import { vueV8n } from 'vue-v8n'
+import { createV8n } from 'vue-v8n'
 
-vueV8n()
+const v8n = createV8n()
 
-createApp(App).mount('#app')
+createApp(App)
+  .use(v8n)
+  .mount('#app')
