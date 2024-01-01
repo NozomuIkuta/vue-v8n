@@ -1,9 +1,9 @@
 import { computed, ref, toRef, watch } from 'vue'
-import type { MaybeRef } from 'vue'
+import type { MaybeRef, MaybeRefOrGetter } from 'vue'
 import type { RuleDefinition, UseV7dOptions } from '../types'
 import { createResult } from '../rule'
 
-export function useV7d<T>(value: MaybeRef<T>, rules: RuleDefinition[], options?: UseV7dOptions) {
+export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const immediate = !!options?.immediate
 
   const el = ref<EventTarget | null>(null)
@@ -20,6 +20,8 @@ export function useV7d<T>(value: MaybeRef<T>, rules: RuleDefinition[], options?:
   }, { immediate: true })
 
   watch(_value, validate, { immediate })
+
+  watch(_rules, validate)
 
   function touch() {
     const isAlreadyTouched = touched.value

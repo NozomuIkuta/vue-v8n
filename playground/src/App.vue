@@ -1,22 +1,39 @@
 <script setup lang="ts">
-import { ref, onMounted, getCurrentInstance } from 'vue'
+import { computed, ref, onMounted, getCurrentInstance } from 'vue'
 import { useV7d, required } from 'vue-v8n'
 
-const name = useV7d('', [required])
+const nameRuleOptions = ref([
+  { label: required.name, rule: required, selected: false }
+])
+const nameRules = computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
+const name = useV7d('', nameRules)
+
 const state = ref({
   name
 })
+
+function reset() {
+  name.reset()
+}
+
+function touch() {
+  name.touch()
+}
 
 onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProperties.vueV8n))
 </script>
 
 <template>
   <div class="panes">
+    <div class="pane pane-control">
+      <div class="control-items">
+        <button @click="reset">Reset all</button>
+        <button @click="touch">Touch all</button>
+      </div>
+    </div>
     <div class="pane pane-ui">
       <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
-        <label class="form-label">
-          Name:
-        </label>
+        <label class="form-label">Name:</label>
         <input
           :ref="name.el"
           type="text"
@@ -24,6 +41,17 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           class="form-input"
         >
         <p v-if="name.hasError" class="error-message">{{ name.errorMessage.value }}</p>
+      </div>
+      <div class="control-items">
+        <p>Rules:</p>
+        <label v-for="ruleOption in nameRuleOptions">
+          <input type="checkbox" v-model="ruleOption.selected">
+          {{ ruleOption.label }}
+        </label>
+      </div>
+      <div class="control-items">
+        <button @click="name.reset">Reset</button>
+        <button @click="name.touch">Touch</button>
       </div>
     </div>
     <div class="pane pane-state">
@@ -89,8 +117,9 @@ pre {
   border: 1px solid var(--app-color);
 }
 
-.locales {
+.control-items {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 2px 8px;
 }
 </style>
