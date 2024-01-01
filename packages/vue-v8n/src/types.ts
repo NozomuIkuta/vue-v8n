@@ -1,6 +1,6 @@
 export interface VueV8nOptions {}
 
-// --- COPY TO DIST --- //
+// --- THE CONTENT BELOW THIS LINE WILL BE APPENDED TO DTS FILE IN DIST DIRECTORY --- //
 export interface VueV8n {
   options: VueV8nOptions
 }

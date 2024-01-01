@@ -28,7 +28,7 @@ export default defineConfig({
     dts({
       rollupTypes: true,
       async afterBuild() {
-        const marker = '// --- COPY TO DIST --- //'
+        const marker = '// --- THE CONTENT BELOW THIS LINE WILL BE APPENDED TO DTS FILE IN DIST DIRECTORY --- //'
         const content = await readFile(resolve(projectRoot, 'src/types.ts'), 'utf8')
         const data = content.slice(content.indexOf(marker) + marker.length)
         await appendFile(resolve(projectRoot, 'dist/vue-v8n.d.ts'), data)
