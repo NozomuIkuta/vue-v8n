@@ -1,6 +1,20 @@
 # Changelog
 
 
+## v0.0.10
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.9...v0.0.10)
+
+### 🚀 Enhancements
+
+- Support dynamic rules for `useV7d` composable ([6d7aa01](https://github.com/NozomuIkuta/vue-v8n/commit/6d7aa01))
+- Add `min` and `max` rule factories ([a570f9b](https://github.com/NozomuIkuta/vue-v8n/commit/a570f9b))
+- Add `sameAs` rule factory ([30f57aa](https://github.com/NozomuIkuta/vue-v8n/commit/30f57aa))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.9
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.8...v0.0.9)
