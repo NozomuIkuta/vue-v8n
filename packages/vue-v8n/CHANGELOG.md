@@ -1,6 +1,18 @@
 # Changelog
 
 
+## v0.0.9
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.8...v0.0.9)
+
+### 🏡 Chore
+
+- Update `README.md` ([ab7f0b4](https://github.com/NozomuIkuta/vue-v8n/commit/ab7f0b4))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.8
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.7...v0.0.8)
