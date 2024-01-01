@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.0.8
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.7...v0.0.8)
+
+### 🚀 Enhancements
+
+- Add `useV7d` composable and `required` rule ([f2dea62](https://github.com/NozomuIkuta/vue-v8n/commit/f2dea62))
+
+### 🏡 Chore
+
+- Change comment ([f8fc582](https://github.com/NozomuIkuta/vue-v8n/commit/f8fc582))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.7
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.6...v0.0.7)
