@@ -1,8 +1,9 @@
 import { createApp } from 'vue'
+import './style.css'
 import App from './App.vue'
 import { createV8n } from 'vue-v8n'
 
-const v8n = createV8n()
+const v8n = createV8n({})
 
 createApp(App)
   .use(v8n)
