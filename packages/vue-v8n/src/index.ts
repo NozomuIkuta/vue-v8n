@@ -1,3 +1,5 @@
 export { useV7d } from './composables/useV7d'
+export { max } from './rules/max'
+export { min } from './rules/min'
 export { required } from './rules/required'
 export * from './vueV8n'

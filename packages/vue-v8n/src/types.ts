@@ -1,7 +1,14 @@
 export interface RuleDefinition {
   name: string
-  run: (value: unknown, context: RuleContext) => V8nResult
+  run: RuleFunction
 }
+
+export interface RuleFactoryDefinition<T = Record<string, unknown>> {
+  name: string
+  create: (options: T) => RuleFunction
+}
+
+type RuleFunction = (value: unknown, context: RuleContext) => V8nResult
 
 export interface RuleContext {
   createResult: (errorMessage: string | null) => V8nResult

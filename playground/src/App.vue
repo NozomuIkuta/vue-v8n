@@ -1,15 +1,26 @@
 <script setup lang="ts">
 import { computed, ref, onMounted, getCurrentInstance } from 'vue'
-import { useV7d, required } from 'vue-v8n'
+import { useV7d, max, min, required } from 'vue-v8n'
 
 const nameRuleOptions = ref([
-  { label: required.name, rule: required, selected: false }
+  { label: 'required', rule: required, selected: false },
+  { label: 'min(5)', rule: min(5), selected: false },
+  { label: 'max(10)', rule: max(10), selected: false }
 ])
 const nameRules = computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
 const name = useV7d('', nameRules)
 
+const countRuleOptions = ref([
+  { label: 'required', rule: required, selected: false },
+  { label: 'min(5)', rule: min(5), selected: false },
+  { label: 'max(10)', rule: max(10), selected: false }
+])
+const countRules = computed(() => countRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
+const count = useV7d(0, countRules)
+
 const state = ref({
-  name
+  name,
+  count
 })
 
 function reset() {
@@ -40,18 +51,39 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           v-model="name.value.value"
           class="form-input"
         >
-        <p v-if="name.hasError" class="error-message">{{ name.errorMessage.value }}</p>
+        <p v-if="name.hasError.value" class="error-message">{{ name.errorMessage.value }}</p>
+        <div class="control-items">
+          <p>Rules:</p>
+          <label v-for="ruleOption in nameRuleOptions">
+            <input type="checkbox" v-model="ruleOption.selected">
+            {{ ruleOption.label }}
+          </label>
+        </div>
+        <div class="control-items">
+          <button @click="name.reset">Reset</button>
+          <button @click="name.touch">Touch</button>
+        </div>
       </div>
-      <div class="control-items">
-        <p>Rules:</p>
-        <label v-for="ruleOption in nameRuleOptions">
-          <input type="checkbox" v-model="ruleOption.selected">
-          {{ ruleOption.label }}
-        </label>
-      </div>
-      <div class="control-items">
-        <button @click="name.reset">Reset</button>
-        <button @click="name.touch">Touch</button>
+      <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
+        <label class="form-label">Count:</label>
+        <input
+          :ref="count.el"
+          type="number"
+          v-model="count.value.value"
+          class="form-input"
+        >
+        <p v-if="count.hasError.value" class="error-message">{{ count.errorMessage.value }}</p>
+        <div class="control-items">
+          <p>Rules:</p>
+          <label v-for="ruleOption in countRuleOptions">
+            <input type="checkbox" v-model="ruleOption.selected">
+            {{ ruleOption.label }}
+          </label>
+        </div>
+        <div class="control-items">
+          <button @click="count.reset">Reset</button>
+          <button @click="count.touch">Touch</button>
+        </div>
       </div>
     </div>
     <div class="pane pane-state">
