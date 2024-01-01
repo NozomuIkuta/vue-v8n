@@ -1,34 +1,45 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, getCurrentInstance } from 'vue'
-import { useV7d, max, min, required } from 'vue-v8n'
+import { computed, ref, onMounted, getCurrentInstance, watch } from 'vue'
+import { useV7d, max, min, required, sameAs } from 'vue-v8n'
 
 const nameRuleOptions = ref([
   { label: 'required', rule: required, selected: false },
   { label: 'min(5)', rule: min(5), selected: false },
   { label: 'max(10)', rule: max(10), selected: false }
 ])
-const nameRules = computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
-const name = useV7d('', nameRules)
+const name = useV7d('', computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
 const countRuleOptions = ref([
   { label: 'required', rule: required, selected: false },
   { label: 'min(5)', rule: min(5), selected: false },
   { label: 'max(10)', rule: max(10), selected: false }
 ])
-const countRules = computed(() => countRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
-const count = useV7d(0, countRules)
+const count = useV7d(0, computed(() => countRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
+
+const password = ref('')
+const passwordConfirmationRuleOptions = ref([
+  { label: 'sameAs(password)', rule: sameAs(password), selected: false }
+])
+const passwordConfirmation = useV7d('', computed(() => passwordConfirmationRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
+
+watch(password, () => passwordConfirmation.validate())
 
 const state = ref({
   name,
-  count
+  count,
+  passwordConfirmation
 })
 
 function reset() {
   name.reset()
+  count.reset()
+  passwordConfirmation.reset()
 }
 
 function touch() {
   name.touch()
+  count.touch()
+  passwordConfirmation.touch()
 }
 
 onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProperties.vueV8n))
@@ -83,6 +94,33 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
         <div class="control-items">
           <button @click="count.reset">Reset</button>
           <button @click="count.touch">Touch</button>
+        </div>
+      </div>
+      <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
+        <label class="form-label">Password:</label>
+        <input
+          type="input"
+          v-model="password"
+          class="form-input"
+        >
+        <label class="form-label">Password (confirmation):</label>
+        <input
+          :ref="passwordConfirmation.el"
+          type="input"
+          v-model="passwordConfirmation.value.value"
+          class="form-input"
+        >
+        <p v-if="passwordConfirmation.hasError.value" class="error-message">{{ passwordConfirmation.errorMessage.value }}</p>
+        <div class="control-items">
+          <p>Rules:</p>
+          <label v-for="ruleOption in passwordConfirmationRuleOptions">
+            <input type="checkbox" v-model="ruleOption.selected">
+            {{ ruleOption.label }}
+          </label>
+        </div>
+        <div class="control-items">
+          <button @click="passwordConfirmation.reset">Reset</button>
+          <button @click="passwordConfirmation.touch">Touch</button>
         </div>
       </div>
     </div>
