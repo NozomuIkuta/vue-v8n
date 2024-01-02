@@ -47,9 +47,13 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
 
     if (errorMessages.value.length) {
       errorMessage.value = errorMessages.value[0]
-    } else {
-      errorMessage.value = ''
+
+      return new Error(errorMessages.value[0])
     }
+
+    errorMessage.value = ''
+
+    return _value.value as T
   }
 
   function reset() {

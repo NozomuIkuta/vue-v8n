@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, onMounted, getCurrentInstance, watch } from 'vue'
+import { computed, reactive, ref, onMounted, getCurrentInstance, watch } from 'vue'
 import { useV7d, max, min, required, sameAs } from 'vue-v8n'
 
 const nameRuleOptions = ref([
@@ -22,24 +22,35 @@ const passwordConfirmationRuleOptions = ref([
 ])
 const passwordConfirmation = useV7d('', computed(() => passwordConfirmationRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
-watch(password, () => passwordConfirmation.validate())
+watch(password, () => validatedValues.passwordConfirmation = passwordConfirmation.validate())
 
-const state = ref({
+const state = reactive({
   name,
   count,
   passwordConfirmation
 })
+const validatedValues = reactive({} as {
+  name: typeof name.value.value | Error,
+  count: typeof count.value.value | Error,
+  passwordConfirmation: typeof passwordConfirmation.value.value | Error,
+})
 
-function reset() {
-  name.reset()
-  count.reset()
-  passwordConfirmation.reset()
+function validate() {
+  validatedValues.name = name.validate()
+  validatedValues.count = count.validate()
+  validatedValues.passwordConfirmation = passwordConfirmation.validate()
 }
 
 function touch() {
   name.touch()
   count.touch()
   passwordConfirmation.touch()
+}
+
+function reset() {
+  name.reset()
+  count.reset()
+  passwordConfirmation.reset()
 }
 
 onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProperties.vueV8n))
@@ -49,8 +60,9 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
   <div class="panes">
     <div class="pane pane-control">
       <div class="control-items">
-        <button @click="reset">Reset all</button>
+        <button @click="validate">Validate all</button>
         <button @click="touch">Touch all</button>
+        <button @click="reset">Reset all</button>
       </div>
     </div>
     <div class="pane pane-ui">
@@ -71,8 +83,9 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="name.reset">Reset</button>
+          <button @click="validatedValues.name = name.validate()">Validate</button>
           <button @click="name.touch">Touch</button>
+          <button @click="name.reset">Reset</button>
         </div>
       </div>
       <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
@@ -92,8 +105,9 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="count.reset">Reset</button>
+          <button @click="validatedValues.count = count.validate()">Validate</button>
           <button @click="count.touch">Touch</button>
+          <button @click="count.reset">Reset</button>
         </div>
       </div>
       <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
@@ -119,13 +133,17 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="passwordConfirmation.reset">Reset</button>
+          <button @click="validatedValues.passwordConfirmation = passwordConfirmation.validate()">Validate</button>
           <button @click="passwordConfirmation.touch">Touch</button>
+          <button @click="passwordConfirmation.reset">Reset</button>
         </div>
       </div>
     </div>
     <div class="pane pane-state">
+      <p>[State]</p>
       <pre>{{ state }}</pre>
+      <p>[Validated values]</p>
+      <pre>{{ validatedValues }}</pre>
     </div>
   </div>
 </template>
