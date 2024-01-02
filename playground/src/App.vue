@@ -88,7 +88,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="name.reset">Reset</button>
         </div>
       </div>
-      <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
+      <div :class="['form-item', count.hasError.value ? 'has-error' : '']">
         <label class="form-label">Count:</label>
         <input
           :ref="count.el"
@@ -110,7 +110,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="count.reset">Reset</button>
         </div>
       </div>
-      <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
+      <div :class="['form-item', passwordConfirmation.hasError.value ? 'has-error' : '']">
         <label class="form-label">Password:</label>
         <input
           type="input"
