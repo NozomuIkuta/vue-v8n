@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.0.11
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.10...v0.0.11)
+
+### 🚀 Enhancements
+
+- Make `validate` function return validated value ([eeac76f](https://github.com/NozomuIkuta/vue-v8n/commit/eeac76f))
+
+### 🩹 Fixes
+
+- Fix typos in playground ([90d2e42](https://github.com/NozomuIkuta/vue-v8n/commit/90d2e42))
+- Skip validation if not yet touched ([ad52d18](https://github.com/NozomuIkuta/vue-v8n/commit/ad52d18))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.10
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.9...v0.0.10)
