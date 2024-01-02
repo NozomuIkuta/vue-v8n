@@ -35,6 +35,10 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
   }
 
   function validate() {
+    if (!touched.value) {
+      return new Error('[vue-v8n] not yet touched')
+    }
+
     errorMessages.value = []
 
     for (const rule of _rules.value) {
