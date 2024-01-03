@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.1.0
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.11...v0.1.0)
+
+### 🏡 Chore
+
+- ⚠️  Simplify error-related API ([830c0e9](https://github.com/NozomuIkuta/vue-v8n/commit/830c0e9))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Simplify error-related API ([830c0e9](https://github.com/NozomuIkuta/vue-v8n/commit/830c0e9))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.0.11
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.10...v0.0.11)
