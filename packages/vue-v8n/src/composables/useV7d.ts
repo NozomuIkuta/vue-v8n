@@ -1,7 +1,6 @@
 import { computed, ref, toRef, watch } from 'vue'
 import type { MaybeRef, MaybeRefOrGetter } from 'vue'
 import type { RuleDefinition, UseV7dOptions } from '../types'
-import { createResult } from '../rule'
 
 export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const immediate = !!options?.immediate
@@ -10,9 +9,9 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
   const _value = toRef(value)
   const _rules = toRef(rules)
   const touched = ref(immediate)
-  const errorMessage = ref('')
-  const errorMessages = ref<string[]>([])
-  const hasError = computed(() => !!errorMessages.value.length)
+  const error = ref('')
+  const errors = ref<string[]>([])
+  const hasError = computed(() => !!errors.value.length)
 
   watch(el, () => {
     el.value?.removeEventListener('focus', touch)
@@ -39,39 +38,39 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
       return new Error('[vue-v8n] not yet touched')
     }
 
-    errorMessages.value = []
+    errors.value = []
 
     for (const rule of _rules.value) {
-      const result = rule.run(_value.value, { createResult })
+      const error = rule.run(_value.value, {})
 
-      if (!result.ok) {
-        errorMessages.value.push(result.errorMessage)
+      if (error) {
+        errors.value.push(error)
       }
     }
 
-    if (errorMessages.value.length) {
-      errorMessage.value = errorMessages.value[0]
+    if (errors.value.length) {
+      error.value = errors.value[0]
 
-      return new Error(errorMessages.value[0])
+      return new Error(errors.value[0])
     }
 
-    errorMessage.value = ''
+    error.value = ''
 
     return _value.value as T
   }
 
   function reset() {
     touched.value = false
-    errorMessages.value = []
-    errorMessage.value = ''
+    errors.value = []
+    error.value = ''
   }
 
   return {
     el,
     touched,
     value: _value,
-    errorMessages,
-    errorMessage,
+    errors,
+    error,
     hasError,
     touch,
     validate,

@@ -9,12 +9,16 @@ const nameRuleOptions = ref([
 ])
 const name = useV7d('', computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
+watch(nameRuleOptions, () => validatedValues.name = name.validate(), { deep: true })
+
 const countRuleOptions = ref([
   { label: 'required', rule: required, selected: false },
   { label: 'min(5)', rule: min(5), selected: false },
   { label: 'max(10)', rule: max(10), selected: false }
 ])
 const count = useV7d(0, computed(() => countRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
+
+watch(countRuleOptions, () => validatedValues.count = count.validate(), { deep: true })
 
 const password = ref('')
 const passwordConfirmationRuleOptions = ref([
@@ -23,6 +27,8 @@ const passwordConfirmationRuleOptions = ref([
 const passwordConfirmation = useV7d('', computed(() => passwordConfirmationRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
 watch(password, () => validatedValues.passwordConfirmation = passwordConfirmation.validate())
+watch(passwordConfirmation.value, () => validatedValues.passwordConfirmation = passwordConfirmation.validate())
+watch(passwordConfirmationRuleOptions, () => validatedValues.passwordConfirmation = passwordConfirmation.validate(), { deep: true })
 
 const state = reactive({
   name,
@@ -74,7 +80,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           v-model="name.value.value"
           class="form-input"
         >
-        <p v-if="name.hasError.value" class="error-message">{{ name.errorMessage.value }}</p>
+        <p v-if="name.hasError.value" class="error-message">{{ name.error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in nameRuleOptions">
@@ -96,7 +102,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           v-model="count.value.value"
           class="form-input"
         >
-        <p v-if="count.hasError.value" class="error-message">{{ count.errorMessage.value }}</p>
+        <p v-if="count.hasError.value" class="error-message">{{ count.error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in countRuleOptions">
@@ -124,7 +130,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           v-model="passwordConfirmation.value.value"
           class="form-input"
         >
-        <p v-if="passwordConfirmation.hasError.value" class="error-message">{{ passwordConfirmation.errorMessage.value }}</p>
+        <p v-if="passwordConfirmation.hasError.value" class="error-message">{{ passwordConfirmation.error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in passwordConfirmationRuleOptions">

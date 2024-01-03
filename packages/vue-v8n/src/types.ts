@@ -8,23 +8,9 @@ export interface RuleFactoryDefinition<T = Record<string, unknown>> {
   create: (options: T) => RuleFunction
 }
 
-type RuleFunction = (value: unknown, context: RuleContext) => V8nResult
+type RuleFunction = (value: unknown, context: RuleContext) => string | undefined
 
-export interface RuleContext {
-  createResult: (errorMessage: string | null) => V8nResult
-}
-
-export type V8nResult = V8nResultSuccess | V8nResultFailure
-
-export interface V8nResultSuccess {
-  ok: true
-  errorMessage: null
-}
-
-export interface V8nResultFailure {
-  ok: false
-  errorMessage: string
-}
+export interface RuleContext {}
 
 export interface UseV7dOptions {
   immediate: boolean

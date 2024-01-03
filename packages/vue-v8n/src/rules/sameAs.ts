@@ -5,8 +5,10 @@ import { defineRuleFactory } from '../rule'
 export const sameAs = defineRuleFactory({
   name: 'sameAs',
   create (target: MaybeRefOrGetter<unknown>) {
-    return function (value, { createResult }) {
-      return createResult(value === toValue(target) ? null : 'Value is not same as target')
+    return function (value) {
+      if (value !== toValue(target)) {
+        return 'Value is not same as target'
+      }
     }
   }
 })
