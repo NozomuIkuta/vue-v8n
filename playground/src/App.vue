@@ -9,7 +9,7 @@ const nameRuleOptions = ref([
 ])
 const name = useV7d('', computed(() => nameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
-watch(nameRuleOptions, () => validatedValues.name = name.validate(), { deep: true })
+watch(nameRuleOptions, () => validatedValues.name = name.$validate(), { deep: true })
 
 const countRuleOptions = ref([
   { label: 'required', rule: required, selected: false },
@@ -18,7 +18,7 @@ const countRuleOptions = ref([
 ])
 const count = useV7d(0, computed(() => countRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
-watch(countRuleOptions, () => validatedValues.count = count.validate(), { deep: true })
+watch(countRuleOptions, () => validatedValues.count = count.$validate(), { deep: true })
 
 const password = ref('')
 const passwordConfirmationRuleOptions = ref([
@@ -26,9 +26,9 @@ const passwordConfirmationRuleOptions = ref([
 ])
 const passwordConfirmation = useV7d('', computed(() => passwordConfirmationRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])))
 
-watch(password, () => validatedValues.passwordConfirmation = passwordConfirmation.validate())
-watch(passwordConfirmation.value, () => validatedValues.passwordConfirmation = passwordConfirmation.validate())
-watch(passwordConfirmationRuleOptions, () => validatedValues.passwordConfirmation = passwordConfirmation.validate(), { deep: true })
+watch(password, () => validatedValues.passwordConfirmation = passwordConfirmation.$validate())
+watch(passwordConfirmation.value, () => validatedValues.passwordConfirmation = passwordConfirmation.$validate())
+watch(passwordConfirmationRuleOptions, () => validatedValues.passwordConfirmation = passwordConfirmation.$validate(), { deep: true })
 
 const state = reactive({
   name,
@@ -42,21 +42,21 @@ const validatedValues = reactive({} as {
 })
 
 function validate() {
-  validatedValues.name = name.validate()
-  validatedValues.count = count.validate()
-  validatedValues.passwordConfirmation = passwordConfirmation.validate()
+  validatedValues.name = name.$validate()
+  validatedValues.count = count.$validate()
+  validatedValues.passwordConfirmation = passwordConfirmation.$validate()
 }
 
 function touch() {
-  name.touch()
-  count.touch()
-  passwordConfirmation.touch()
+  name.$touch()
+  count.$touch()
+  passwordConfirmation.$touch()
 }
 
 function reset() {
-  name.reset()
-  count.reset()
-  passwordConfirmation.reset()
+  name.$reset()
+  count.$reset()
+  passwordConfirmation.$reset()
 }
 
 onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProperties.vueV8n))
@@ -72,15 +72,15 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
       </div>
     </div>
     <div class="pane pane-ui">
-      <div :class="['form-item', name.hasError.value ? 'has-error' : '']">
+      <div :class="['form-item', name.$hasError.value ? 'has-error' : '']">
         <label class="form-label">Name:</label>
         <input
-          :ref="name.el"
+          :ref="name.$el"
           type="text"
           v-model="name.value.value"
           class="form-input"
         >
-        <p v-if="name.hasError.value" class="error-message">{{ name.error.value }}</p>
+        <p v-if="name.$hasError.value" class="error-message">{{ name.$error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in nameRuleOptions">
@@ -89,20 +89,20 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="validatedValues.name = name.validate()">Validate</button>
-          <button @click="name.touch">Touch</button>
-          <button @click="name.reset">Reset</button>
+          <button @click="validatedValues.name = name.$validate()">Validate</button>
+          <button @click="name.$touch">Touch</button>
+          <button @click="name.$reset">Reset</button>
         </div>
       </div>
-      <div :class="['form-item', count.hasError.value ? 'has-error' : '']">
+      <div :class="['form-item', count.$hasError.value ? 'has-error' : '']">
         <label class="form-label">Count:</label>
         <input
-          :ref="count.el"
+          :ref="count.$el"
           type="number"
           v-model="count.value.value"
           class="form-input"
         >
-        <p v-if="count.hasError.value" class="error-message">{{ count.error.value }}</p>
+        <p v-if="count.$hasError.value" class="error-message">{{ count.$error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in countRuleOptions">
@@ -111,12 +111,12 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="validatedValues.count = count.validate()">Validate</button>
-          <button @click="count.touch">Touch</button>
-          <button @click="count.reset">Reset</button>
+          <button @click="validatedValues.count = count.$validate()">Validate</button>
+          <button @click="count.$touch">Touch</button>
+          <button @click="count.$reset">Reset</button>
         </div>
       </div>
-      <div :class="['form-item', passwordConfirmation.hasError.value ? 'has-error' : '']">
+      <div :class="['form-item', passwordConfirmation.$hasError.value ? 'has-error' : '']">
         <label class="form-label">Password:</label>
         <input
           type="input"
@@ -125,12 +125,12 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
         >
         <label class="form-label">Password (confirmation):</label>
         <input
-          :ref="passwordConfirmation.el"
+          :ref="passwordConfirmation.$el"
           type="input"
           v-model="passwordConfirmation.value.value"
           class="form-input"
         >
-        <p v-if="passwordConfirmation.hasError.value" class="error-message">{{ passwordConfirmation.error.value }}</p>
+        <p v-if="passwordConfirmation.$hasError.value" class="error-message">{{ passwordConfirmation.$error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
           <label v-for="ruleOption in passwordConfirmationRuleOptions">
@@ -139,9 +139,9 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           </label>
         </div>
         <div class="control-items">
-          <button @click="validatedValues.passwordConfirmation = passwordConfirmation.validate()">Validate</button>
-          <button @click="passwordConfirmation.touch">Touch</button>
-          <button @click="passwordConfirmation.reset">Reset</button>
+          <button @click="validatedValues.passwordConfirmation = passwordConfirmation.$validate()">Validate</button>
+          <button @click="passwordConfirmation.$touch">Touch</button>
+          <button @click="passwordConfirmation.$reset">Reset</button>
         </div>
       </div>
     </div>

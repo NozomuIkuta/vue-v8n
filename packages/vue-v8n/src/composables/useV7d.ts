@@ -5,34 +5,34 @@ import type { RuleDefinition, UseV7dOptions } from '../types'
 export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const immediate = !!options?.immediate
 
-  const el = ref<EventTarget>()
+  const $el = ref<EventTarget>()
   const _value = toRef(value)
   const _rules = toRef(rules)
   const _touched = ref(immediate)
   const _error = ref('')
   const _errors = ref<string[]>([])
 
-  watch(el, () => {
-    el.value?.removeEventListener('focus', touch)
-    el.value?.addEventListener('focus', touch)
+  watch($el, () => {
+    $el.value?.removeEventListener('focus', $touch)
+    $el.value?.addEventListener('focus', $touch)
   }, { immediate: true })
 
-  watch(_value, validate, { immediate })
+  watch(_value, $validate, { immediate })
 
-  watch(_rules, validate)
+  watch(_rules, $validate)
 
-  function touch() {
+  function $touch() {
     const isAlreadyTouched = _touched.value
 
     _touched.value = true
 
     if (!isAlreadyTouched) {
-      el.value?.removeEventListener('blur', validate)
-      el.value?.addEventListener('blur', validate, { once: true })
+      $el.value?.removeEventListener('blur', $validate)
+      $el.value?.addEventListener('blur', $validate, { once: true })
     }
   }
 
-  function validate() {
+  function $validate() {
     if (!_touched.value) {
       return new Error('[vue-v8n] not yet touched')
     }
@@ -58,7 +58,7 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
     return _value.value as T
   }
 
-  function reset() {
+  function $reset() {
     _touched.value = false
     _errors.value = []
     _error.value = ''
@@ -66,13 +66,13 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
 
   return {
     value: _value,
-    el,
-    touched: computed(() => _touched.value),
-    error: computed(() => _error.value),
-    errors: computed(() => _errors.value),
-    hasError: computed(() => !!_errors.value.length),
-    touch,
-    validate,
-    reset
+    $el,
+    $touched: computed(() => _touched.value),
+    $error: computed(() => _error.value),
+    $errors: computed(() => _errors.value),
+    $hasError: computed(() => !!_errors.value.length),
+    $touch,
+    $validate,
+    $reset
   }
 }
