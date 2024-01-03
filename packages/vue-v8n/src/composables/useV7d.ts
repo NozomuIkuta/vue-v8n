@@ -4,7 +4,8 @@ import type { RuleDefinition, UseV7dOptions } from '../types'
 
 export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const {
-    immediate = false
+    immediate = false,
+    touchOnFocus = true
   } = options || {}
 
   const $el = ref<EventTarget>()
@@ -14,10 +15,12 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
   const _error = ref('')
   const _errors = ref<string[]>([])
 
-  watch($el, () => {
-    $el.value?.removeEventListener('focus', $touch)
-    $el.value?.addEventListener('focus', $touch)
-  }, { immediate: true })
+  if (touchOnFocus) {
+    watch($el, () => {
+      $el.value?.removeEventListener('focus', $touch)
+      $el.value?.addEventListener('focus', $touch)
+    }, { immediate: true })
+  }
 
   watch(_value, $validate, { immediate })
 
