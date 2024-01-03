@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.1
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.0...v0.2.1)
+
+### 🚀 Enhancements
+
+- Add `touchOnFocus` option ([f0d2d3b](https://github.com/NozomuIkuta/vue-v8n/commit/f0d2d3b))
+- Add `validateOnBlur` option ([aa5e7d5](https://github.com/NozomuIkuta/vue-v8n/commit/aa5e7d5))
+
+### 🏡 Chore
+
+- Make `immediate` option optional ([b4566a7](https://github.com/NozomuIkuta/vue-v8n/commit/b4566a7))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.2.0
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.1.0...v0.2.0)
