@@ -1,6 +1,28 @@
 # Changelog
 
 
+## v0.2.0
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.1.0...v0.2.0)
+
+### 🏡 Chore
+
+- ⚠️  Change type of `el` ([e810cd6](https://github.com/NozomuIkuta/vue-v8n/commit/e810cd6))
+- ⚠️  Make some composable properties read-only ([233d3f6](https://github.com/NozomuIkuta/vue-v8n/commit/233d3f6))
+- ⚠️  Add `$` prefix to composable properties ([7c4fa6a](https://github.com/NozomuIkuta/vue-v8n/commit/7c4fa6a))
+- ⚠️  Change type of `value` argument of `useV7d` composable ([109687e](https://github.com/NozomuIkuta/vue-v8n/commit/109687e))
+
+#### ⚠️ Breaking Changes
+
+- ⚠️  Change type of `el` ([e810cd6](https://github.com/NozomuIkuta/vue-v8n/commit/e810cd6))
+- ⚠️  Make some composable properties read-only ([233d3f6](https://github.com/NozomuIkuta/vue-v8n/commit/233d3f6))
+- ⚠️  Add `$` prefix to composable properties ([7c4fa6a](https://github.com/NozomuIkuta/vue-v8n/commit/7c4fa6a))
+- ⚠️  Change type of `value` argument of `useV7d` composable ([109687e](https://github.com/NozomuIkuta/vue-v8n/commit/109687e))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.1.0
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.0.11...v0.1.0)
