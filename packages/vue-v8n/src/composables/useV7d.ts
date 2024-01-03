@@ -8,10 +8,9 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
   const el = ref<EventTarget>()
   const _value = toRef(value)
   const _rules = toRef(rules)
-  const touched = ref(immediate)
-  const error = ref('')
-  const errors = ref<string[]>([])
-  const hasError = computed(() => !!errors.value.length)
+  const _touched = ref(immediate)
+  const _error = ref('')
+  const _errors = ref<string[]>([])
 
   watch(el, () => {
     el.value?.removeEventListener('focus', touch)
@@ -23,9 +22,9 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
   watch(_rules, validate)
 
   function touch() {
-    const isAlreadyTouched = touched.value
+    const isAlreadyTouched = _touched.value
 
-    touched.value = true
+    _touched.value = true
 
     if (!isAlreadyTouched) {
       el.value?.removeEventListener('blur', validate)
@@ -34,44 +33,44 @@ export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefini
   }
 
   function validate() {
-    if (!touched.value) {
+    if (!_touched.value) {
       return new Error('[vue-v8n] not yet touched')
     }
 
-    errors.value = []
+    _errors.value = []
 
     for (const rule of _rules.value) {
       const error = rule.run(_value.value, {})
 
       if (error) {
-        errors.value.push(error)
+        _errors.value.push(error)
       }
     }
 
-    if (errors.value.length) {
-      error.value = errors.value[0]
+    if (_errors.value.length) {
+      _error.value = _errors.value[0]
 
-      return new Error(errors.value[0])
+      return new Error(_errors.value[0])
     }
 
-    error.value = ''
+    _error.value = ''
 
     return _value.value as T
   }
 
   function reset() {
-    touched.value = false
-    errors.value = []
-    error.value = ''
+    _touched.value = false
+    _errors.value = []
+    _error.value = ''
   }
 
   return {
-    el,
-    touched,
     value: _value,
-    errors,
-    error,
-    hasError,
+    el,
+    touched: computed(() => _touched.value),
+    error: computed(() => _error.value),
+    errors: computed(() => _errors.value),
+    hasError: computed(() => !!_errors.value.length),
     touch,
     validate,
     reset
