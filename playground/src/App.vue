@@ -30,49 +30,50 @@ watch(password, () => validatedValues.passwordConfirmation = passwordConfirmatio
 watch(passwordConfirmation.value, () => validatedValues.passwordConfirmation = passwordConfirmation.$validate())
 watch(passwordConfirmationRuleOptions, () => validatedValues.passwordConfirmation = passwordConfirmation.$validate(), { deep: true })
 
-const noTouchedNameRuleOptions = ref([
+const noEventListeningNameRuleOptions = ref([
   { label: 'required', rule: required, selected: false },
   { label: 'min(5)', rule: min(5), selected: false },
   { label: 'max(10)', rule: max(10), selected: false }
 ])
-const noTouchedName = useV7d('', computed(() => noTouchedNameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])), {
-  touchOnFocus: false
+const noEventListeningName = useV7d('', computed(() => noEventListeningNameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])), {
+  touchOnFocus: false,
+  validateOnBlur: false
 })
 
-watch(noTouchedNameRuleOptions, () => validatedValues.noTouchedName = noTouchedName.$validate(), { deep: true })
+watch(noEventListeningNameRuleOptions, () => validatedValues.noEventListeningName = noEventListeningName.$validate(), { deep: true })
 
 const state = reactive({
   name,
   count,
   passwordConfirmation,
-  noTouchedName
+  noEventListeningName
 })
 const validatedValues = reactive({} as {
   name: typeof name.value.value | Error,
   count: typeof count.value.value | Error,
   passwordConfirmation: typeof passwordConfirmation.value.value | Error,
-  noTouchedName: typeof noTouchedName.value.value | Error,
+  noEventListeningName: typeof noEventListeningName.value.value | Error,
 })
 
 function validate() {
   validatedValues.name = name.$validate()
   validatedValues.count = count.$validate()
   validatedValues.passwordConfirmation = passwordConfirmation.$validate()
-  validatedValues.noTouchedName = noTouchedName.$validate()
+  validatedValues.noEventListeningName = noEventListeningName.$validate()
 }
 
 function touch() {
   name.$touch()
   count.$touch()
   passwordConfirmation.$touch()
-  noTouchedName.$touch()
+  noEventListeningName.$touch()
 }
 
 function reset() {
   name.$reset()
   count.$reset()
   passwordConfirmation.$reset()
-  noTouchedName.$reset()
+  noEventListeningName.$reset()
 }
 
 onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProperties.vueV8n))
@@ -160,26 +161,26 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="passwordConfirmation.$reset">Reset</button>
         </div>
       </div>
-      <div :class="['form-item', noTouchedName.$hasError.value ? 'has-error' : '']">
-        <label class="form-label">Name (no touched on focus):</label>
+      <div :class="['form-item', noEventListeningName.$hasError.value ? 'has-error' : '']">
+        <label class="form-label">Name (no event listening):</label>
         <input
-          :ref="noTouchedName.$el"
+          :ref="noEventListeningName.$el"
           type="text"
-          v-model="noTouchedName.value.value"
+          v-model="noEventListeningName.value.value"
           class="form-input"
         >
-        <p v-if="noTouchedName.$hasError.value" class="error-message">{{ noTouchedName.$error.value }}</p>
+        <p v-if="noEventListeningName.$hasError.value" class="error-message">{{ noEventListeningName.$error.value }}</p>
         <div class="control-items">
           <p>Rules:</p>
-          <label v-for="ruleOption in noTouchedNameRuleOptions">
+          <label v-for="ruleOption in noEventListeningNameRuleOptions">
             <input type="checkbox" v-model="ruleOption.selected">
             {{ ruleOption.label }}
           </label>
         </div>
         <div class="control-items">
-          <button @click="validatedValues.noTouchedName = noTouchedName.$validate()">Validate</button>
-          <button @click="noTouchedName.$touch">Touch</button>
-          <button @click="noTouchedName.$reset">Reset</button>
+          <button @click="validatedValues.noEventListeningName = noEventListeningName.$validate()">Validate</button>
+          <button @click="noEventListeningName.$touch">Touch</button>
+          <button @click="noEventListeningName.$reset">Reset</button>
         </div>
       </div>
     </div>

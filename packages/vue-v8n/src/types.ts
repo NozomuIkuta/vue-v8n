@@ -15,6 +15,7 @@ export interface RuleContext {}
 export interface UseV7dOptions {
   immediate?: boolean
   touchOnFocus?: boolean
+  validateOnBlur?: boolean
 }
 
 export interface VueV8nOptions {}

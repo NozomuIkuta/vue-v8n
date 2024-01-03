@@ -5,7 +5,8 @@ import type { RuleDefinition, UseV7dOptions } from '../types'
 export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const {
     immediate = false,
-    touchOnFocus = true
+    touchOnFocus = true,
+    validateOnBlur = true
   } = options || {}
 
   const $el = ref<EventTarget>()
@@ -31,7 +32,7 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
 
     _touched.value = true
 
-    if (!isAlreadyTouched) {
+    if (!isAlreadyTouched && validateOnBlur) {
       $el.value?.removeEventListener('blur', $validate)
       $el.value?.addEventListener('blur', $validate, { once: true })
     }
