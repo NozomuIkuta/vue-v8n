@@ -3,7 +3,9 @@ import type { MaybeRefOrGetter } from 'vue'
 import type { RuleDefinition, UseV7dOptions } from '../types'
 
 export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
-  const immediate = !!options?.immediate
+  const {
+    immediate = false
+  } = options || {}
 
   const $el = ref<EventTarget>()
   const _value = ref(value)

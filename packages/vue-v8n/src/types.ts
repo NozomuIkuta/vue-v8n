@@ -13,7 +13,7 @@ type RuleFunction = (value: unknown, context: RuleContext) => string | undefined
 export interface RuleContext {}
 
 export interface UseV7dOptions {
-  immediate: boolean
+  immediate?: boolean
 }
 
 export interface VueV8nOptions {}
