@@ -5,7 +5,7 @@ import type { RuleDefinition, UseV7dOptions } from '../types'
 export function useV7d<T>(value: MaybeRef<T>, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
   const immediate = !!options?.immediate
 
-  const el = ref<EventTarget | null>(null)
+  const el = ref<EventTarget>()
   const _value = toRef(value)
   const _rules = toRef(rules)
   const touched = ref(immediate)
