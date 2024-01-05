@@ -82,6 +82,11 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     _value.value = _initialValue as UnwrapRef<T>
   }
 
+  function $resetWith(newValue: UnwrapRef<T>) {
+    $reset()
+    _value.value = newValue
+  }
+
   return {
     value: _value,
     $el,
@@ -92,6 +97,7 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     $touch,
     $validate,
     $reset,
-    $resetWithInitialValue
+    $resetWithInitialValue,
+    $resetWith
   }
 }

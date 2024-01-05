@@ -110,6 +110,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="name.$touch">Touch</button>
           <button @click="name.$reset">Reset</button>
           <button @click="name.$resetWithInitialValue">Reset with initial value</button>
+          <button @click="name.$resetWith('too long name')">Reset with "too long name"</button>
         </div>
       </div>
       <div :class="['form-item', count.$hasError.value ? 'has-error' : '']">
@@ -133,6 +134,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="count.$touch">Touch</button>
           <button @click="count.$reset">Reset</button>
           <button @click="count.$resetWithInitialValue">Reset with initial value</button>
+          <button @click="count.$resetWith(10)">Reset with "10"</button>
         </div>
       </div>
       <div :class="['form-item', passwordConfirmation.$hasError.value ? 'has-error' : '']">
@@ -162,6 +164,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="passwordConfirmation.$touch">Touch</button>
           <button @click="passwordConfirmation.$reset">Reset</button>
           <button @click="passwordConfirmation.$resetWithInitialValue">Reset with initial value</button>
+          <button @click="passwordConfirmation.$resetWith('wrong password')">Reset with "wrong password"</button>
         </div>
       </div>
       <div :class="['form-item', noEventListeningName.$hasError.value ? 'has-error' : '']">
@@ -185,6 +188,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="noEventListeningName.$touch">Touch</button>
           <button @click="noEventListeningName.$reset">Reset</button>
           <button @click="noEventListeningName.$resetWithInitialValue">Reset with initial value</button>
+          <button @click="noEventListeningName.$resetWith('too long name')">Reset with "too long name"</button>
         </div>
       </div>
     </div>
