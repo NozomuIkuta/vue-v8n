@@ -26,5 +26,70 @@ body {
 }
 
 #app {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   min-height: 100vh;
+  padding: 20px;
+}
+
+.panes {
+  display: flex;
+  gap: 20px;
+  height: 100vh;
+}
+
+.pane {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+  height: 100%;
+}
+
+.content-box {
+  padding: 10px;
+  overflow-x: scroll;
+  background-color: field;
+}
+
+.content {
+  white-space: pre-wrap;
+  min-height: 176px;
+  margin: 0;
+}
+
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-input:focus {
+  outline: none;
+}
+
+.form-item.has-error .form-label {
+  color: #f00;
+}
+
+.form-item.has-error .form-input {
+  border: 1px solid #f00;
+}
+
+.error-message {
+  color: #f00;
+  margin: 0;
+}
+
+.rule-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
+}
+
+.control-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 8px;
 }
