@@ -5,7 +5,7 @@
 [![bundle][bundle-src]][bundle-href]
 [![Codecov][codecov-src]][codecov-href]
 
-Vue-V8n provides validation composables for Vue applications.
+Vue-V8n provides validation composables for Vue application.
 
 > [!CAUTION]
 > This project is under heavy development and not ready for production.
