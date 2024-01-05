@@ -39,9 +39,8 @@ const noEventListeningName = useV7d('', computed(() => noEventListeningNameRuleO
   touchOnFocus: false,
   validateOnBlur: false,
   validateOnValueUpdate: false,
+  validateOnRulesUpdate: false
 })
-
-watch(noEventListeningNameRuleOptions, () => validatedValues.noEventListeningName = noEventListeningName.$validate(), { deep: true })
 
 const state = reactive({
   name,

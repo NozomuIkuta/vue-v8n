@@ -7,7 +7,8 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     immediate = false,
     touchOnFocus = true,
     validateOnBlur = true,
-    validateOnValueUpdate = true
+    validateOnValueUpdate = true,
+    validateOnRulesUpdate = true
   } = options || {}
 
   const $el = ref<EventTarget>()
@@ -28,7 +29,9 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     watch(_value, $validate, { immediate })
   }
 
-  watch(_rules, $validate)
+  if (validateOnRulesUpdate) {
+    watch(_rules, $validate)
+  }
 
   function $touch() {
     const isAlreadyTouched = _touched.value
