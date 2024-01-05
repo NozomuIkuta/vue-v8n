@@ -16,6 +16,7 @@ export interface UseV7dOptions {
   immediate?: boolean
   touchOnFocus?: boolean
   validateOnBlur?: boolean
+  validateOnValueUpdate?: boolean
 }
 
 export interface VueV8nOptions {}

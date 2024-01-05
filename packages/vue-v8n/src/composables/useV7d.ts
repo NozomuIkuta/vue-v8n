@@ -6,7 +6,8 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
   const {
     immediate = false,
     touchOnFocus = true,
-    validateOnBlur = true
+    validateOnBlur = true,
+    validateOnValueUpdate = true
   } = options || {}
 
   const $el = ref<EventTarget>()
@@ -23,7 +24,9 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     }, { immediate: true })
   }
 
-  watch(_value, $validate, { immediate })
+  if (validateOnValueUpdate) {
+    watch(_value, $validate, { immediate })
+  }
 
   watch(_rules, $validate)
 

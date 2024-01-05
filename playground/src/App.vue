@@ -37,7 +37,8 @@ const noEventListeningNameRuleOptions = ref([
 ])
 const noEventListeningName = useV7d('', computed(() => noEventListeningNameRuleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : [])), {
   touchOnFocus: false,
-  validateOnBlur: false
+  validateOnBlur: false,
+  validateOnValueUpdate: false,
 })
 
 watch(noEventListeningNameRuleOptions, () => validatedValues.noEventListeningName = noEventListeningName.$validate(), { deep: true })
