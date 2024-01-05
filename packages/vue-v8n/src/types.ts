@@ -8,7 +8,7 @@ export interface RuleFactoryDefinition<T = Record<string, unknown>> {
   create: (options: T) => RuleFunction
 }
 
-type RuleFunction = (value: unknown, context: RuleContext) => string | undefined
+export type RuleFunction = (value: unknown, context: RuleContext) => string | undefined
 
 export interface RuleContext {}
 
