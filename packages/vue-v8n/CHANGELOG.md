@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v0.2.3
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.2...v0.2.3)
+
+### 🚀 Enhancements
+
+- Export rule types ([3b34753](https://github.com/NozomuIkuta/vue-v8n/commit/3b34753))
+
+### 🏡 Chore
+
+- Refine playground ([0695b5f](https://github.com/NozomuIkuta/vue-v8n/commit/0695b5f))
+- Update pnpm ([f89fbab](https://github.com/NozomuIkuta/vue-v8n/commit/f89fbab))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.2.2
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.1...v0.2.2)
