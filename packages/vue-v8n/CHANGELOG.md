@@ -1,6 +1,25 @@
 # Changelog
 
 
+## v0.2.2
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.1...v0.2.2)
+
+### 🚀 Enhancements
+
+- Add `validateOnValueUpdate` option ([b95530b](https://github.com/NozomuIkuta/vue-v8n/commit/b95530b))
+- Add `validateOnRulesUpdate` option ([b8c1631](https://github.com/NozomuIkuta/vue-v8n/commit/b8c1631))
+- Add `$resetWithInitialValue` function ([5f727d0](https://github.com/NozomuIkuta/vue-v8n/commit/5f727d0))
+- Add `$resetWith` function ([ffda62e](https://github.com/NozomuIkuta/vue-v8n/commit/ffda62e))
+
+### 🏡 Chore
+
+- Update `README.md` ([2cf3610](https://github.com/NozomuIkuta/vue-v8n/commit/2cf3610))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.2.1
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.0...v0.2.1)
