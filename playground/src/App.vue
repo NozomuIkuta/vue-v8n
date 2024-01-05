@@ -109,6 +109,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="validatedValues.name = name.$validate()">Validate</button>
           <button @click="name.$touch">Touch</button>
           <button @click="name.$reset">Reset</button>
+          <button @click="name.$resetWithInitialValue">Reset with initial value</button>
         </div>
       </div>
       <div :class="['form-item', count.$hasError.value ? 'has-error' : '']">
@@ -131,6 +132,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="validatedValues.count = count.$validate()">Validate</button>
           <button @click="count.$touch">Touch</button>
           <button @click="count.$reset">Reset</button>
+          <button @click="count.$resetWithInitialValue">Reset with initial value</button>
         </div>
       </div>
       <div :class="['form-item', passwordConfirmation.$hasError.value ? 'has-error' : '']">
@@ -159,6 +161,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="validatedValues.passwordConfirmation = passwordConfirmation.$validate()">Validate</button>
           <button @click="passwordConfirmation.$touch">Touch</button>
           <button @click="passwordConfirmation.$reset">Reset</button>
+          <button @click="passwordConfirmation.$resetWithInitialValue">Reset with initial value</button>
         </div>
       </div>
       <div :class="['form-item', noEventListeningName.$hasError.value ? 'has-error' : '']">
@@ -181,6 +184,7 @@ onMounted(() => console.log(getCurrentInstance()?.appContext.config.globalProper
           <button @click="validatedValues.noEventListeningName = noEventListeningName.$validate()">Validate</button>
           <button @click="noEventListeningName.$touch">Touch</button>
           <button @click="noEventListeningName.$reset">Reset</button>
+          <button @click="noEventListeningName.$resetWithInitialValue">Reset with initial value</button>
         </div>
       </div>
     </div>

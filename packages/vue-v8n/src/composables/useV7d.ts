@@ -1,5 +1,5 @@
 import { computed, ref, toRef, watch } from 'vue'
-import type { MaybeRefOrGetter } from 'vue'
+import type { MaybeRefOrGetter, UnwrapRef } from 'vue'
 import type { RuleDefinition, UseV7dOptions } from '../types'
 
 export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, options?: UseV7dOptions) {
@@ -12,6 +12,7 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
   } = options || {}
 
   const $el = ref<EventTarget>()
+  const _initialValue = value
   const _value = ref(value)
   const _rules = toRef(rules)
   const _touched = ref(immediate)
@@ -76,6 +77,11 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     _error.value = ''
   }
 
+  function $resetWithInitialValue() {
+    $reset()
+    _value.value = _initialValue as UnwrapRef<T>
+  }
+
   return {
     value: _value,
     $el,
@@ -85,6 +91,7 @@ export function useV7d<T>(value: T, rules: MaybeRefOrGetter<RuleDefinition[]>, o
     $hasError: computed(() => !!_errors.value.length),
     $touch,
     $validate,
-    $reset
+    $reset,
+    $resetWithInitialValue
   }
 }
