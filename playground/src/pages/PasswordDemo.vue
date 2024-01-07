@@ -44,4 +44,3 @@ const controlItems = getControlItemsRef(state, result, 'mypassword')
     </div>
   </DemoView>
 </template>
-../utils

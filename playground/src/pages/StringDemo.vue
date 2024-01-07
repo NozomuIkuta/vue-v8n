@@ -34,4 +34,3 @@ const controlItems = getControlItemsRef(state, result, 'John Doe')
     </div>
   </DemoView>
 </template>
-../utils
