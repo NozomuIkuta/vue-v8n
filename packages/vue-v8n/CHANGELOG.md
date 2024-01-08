@@ -1,6 +1,22 @@
 # Changelog
 
 
+## v0.2.4
+
+[compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.3...v0.2.4)
+
+### 🚀 Enhancements
+
+- Add `useV7dObject` composable ([0ee61a8](https://github.com/NozomuIkuta/vue-v8n/commit/0ee61a8))
+
+### 🩹 Fixes
+
+- Remove unneeded code ([f7cd12c](https://github.com/NozomuIkuta/vue-v8n/commit/f7cd12c))
+
+### ❤️ Contributors
+
+- Nozomu Ikuta
+
 ## v0.2.3
 
 [compare changes](https://github.com/NozomuIkuta/vue-v8n/compare/v0.2.2...v0.2.3)
