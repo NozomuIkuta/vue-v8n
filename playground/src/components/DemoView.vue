@@ -1,9 +1,19 @@
 <script setup lang="ts">
 import type { RuleDefinition } from 'vue-v8n'
 
+export interface ControlItemGroup {
+  label: string
+  items: ControlItem[]
+}
+
 export interface ControlItem {
   label: string
   fn: (...args: unknown[]) => unknown
+}
+
+export interface RuleOptionGroup {
+  label: string
+  rules: RuleOption[]
 }
 
 export interface RuleOption {
@@ -13,12 +23,12 @@ export interface RuleOption {
 }
 
 const props = defineProps<{
-  controlItems: ControlItem[]
+  controlItemGroups: ControlItemGroup[]
   state: unknown
   result: unknown
 }>()
 
-const ruleOptions = defineModel<RuleOption[]>({ required: true })
+const ruleOptionGroups = defineModel<RuleOptionGroup[]>({ required: true })
 </script>
 
 <template>
@@ -27,17 +37,21 @@ const ruleOptions = defineModel<RuleOption[]>({ required: true })
       <slot />
     </div>
     <div class="pane">
-      <p>Rules:</p>
-      <div class="rule-options">
-        <label v-for="ruleOption in ruleOptions">
-          <input type="checkbox" v-model="ruleOption.selected">
-          {{ ruleOption.label }}
-        </label>
-      </div>
-      <p>Functions:</p>
-      <div class="control-items">
-        <button v-for="{ label, fn } in props.controlItems" @click="fn">{{ label }}</button>
-      </div>
+      <template v-for="{ label, rules } in ruleOptionGroups">
+        <p>Rules for "{{ label }}":</p>
+        <div class="rule-options">
+          <label v-for="rule in rules" :key="label">
+            <input type="checkbox" v-model="rule.selected">
+            {{ rule.label }}
+          </label>
+        </div>
+      </template>
+      <template v-for="controlItemGroup in props.controlItemGroups">
+        <p>Functions for "{{ controlItemGroup.label }}":</p>
+        <div class="control-items">
+          <button v-for="{ label, fn } in controlItemGroup.items" @click="fn">{{ label }}</button>
+        </div>
+      </template>
       <p>State:</p>
       <div class="content-box">
         <pre class="content">{{ props.state }}</pre>

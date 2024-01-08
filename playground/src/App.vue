@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 
 const menuItems = computed(() => [
   { label: 'Number', to: '/number' },
+  { label: 'Object', to: '/object' },
   { label: 'Password', to: '/password' },
   { label: 'String', to: '/string' }
 ])

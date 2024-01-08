@@ -1,24 +1,44 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useV7d } from 'vue-v8n'
+import { max, min, required, useV7d } from 'vue-v8n'
 import DemoView from '../components/DemoView.vue'
-import { getControlItemsRef, getRuleOptionsRef } from '../utils'
+import type { ControlItemGroup, RuleOptionGroup } from '../components/DemoView.vue'
 
-const ruleOptions = getRuleOptionsRef()
+const ruleOptionGroups = ref<RuleOptionGroup[]>([
+  {
+    label: 'Name',
+    rules: [
+      { label: 'required', rule: required, selected: false },
+      { label: 'min(5)', rule: min(5), selected: false },
+      { label: 'max(10)', rule: max(10), selected: false }
+    ]
+  }
+])
 
-const rules = computed(() => ruleOptions.value.flatMap(({ selected, rule }) => selected ? [rule] : []))
+const rules = computed(() => ruleOptionGroups.value[0].rules.flatMap(({ selected, rule }) => selected ? [rule] : []))
 
 const state = useV7d('', rules)
 
 const result = ref<typeof state.value.value | Error>(state.value.value)
 
-const controlItems = getControlItemsRef(state, result, 'John Doe')
+const controlItemGroups = ref<ControlItemGroup[]>([
+  {
+    label: 'Name',
+    items: [
+      { label: 'Touch', fn: state.$touch },
+      { label: 'Validate', fn: () => result.value = state.$validate() },
+      { label: 'Reset', fn: state.$reset },
+      { label: 'Reset with initial value', fn: state.$resetWithInitialValue },
+      { label: 'Reset with "John Doe"', fn: () => state.$resetWith('John Doe') }
+    ]
+  }
+])
 </script>
 
 <template>
   <DemoView
-    v-model="ruleOptions"
-    :control-items="controlItems"
+    v-model="ruleOptionGroups"
+    :control-item-groups="controlItemGroups"
     :state="state"
     :result="result"
   >
