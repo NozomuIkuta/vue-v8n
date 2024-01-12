@@ -1,4 +1,5 @@
 export { useV7d } from './composables/useV7d'
+export { useV7dArray } from './composables/useV7dArray'
 export { useV7dObject } from './composables/useV7dObject'
 export { max } from './rules/max'
 export { min } from './rules/min'
